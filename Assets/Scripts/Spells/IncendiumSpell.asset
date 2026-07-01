@@ -18,5 +18,5 @@ MonoBehaviour:
   healthEffect: -10
   icon: {fileID: 0}
   cooldown: 3
-  projectilePrefab: {fileID: 0}
-  projectileSpeed: 0
+  projectilePrefab: {fileID: 6893787821224560266, guid: f836cc6e476a0bb4fa01fc02e4872ab3, type: 3}
+  projectileSpeed: 20

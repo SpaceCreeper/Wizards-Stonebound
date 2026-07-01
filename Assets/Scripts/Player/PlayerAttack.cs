@@ -5,6 +5,12 @@ using System;
 
 public class PlayerAttack : MonoBehaviour
 {
+
+    public Spell activeSpell;
+
+    [SerializeField]
+    private Transform wandTip;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +28,16 @@ public class PlayerAttack : MonoBehaviour
         if (context.started)
         {
             Debug.Log("Pew-pew!");
+
+            if (activeSpell == null) return;
+
+            Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+            mouseWorldPosition.z = 0f;
+
+            Vector2 fireDirection = (mouseWorldPosition - wandTip.position).normalized;
+
+            activeSpell.Cast(wandTip, fireDirection);
         }
     }
 }
