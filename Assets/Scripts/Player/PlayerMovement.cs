@@ -22,11 +22,15 @@ public class PlayerMovement : MonoBehaviour
     private float boxHeight = 0.1f;
     private float extraCastHeight = 0.1f;
 
+    [Header("Animation")]
+    public Animator anim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         col2d = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -47,7 +51,8 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("Player Crouched");
-            throw new System.NotImplementedException("Crouch not implemented yet.");
+            anim.SetBool("crouch", true);
+            //throw new System.NotImplementedException("Crouch not implemented yet.");
         }
     }
 
