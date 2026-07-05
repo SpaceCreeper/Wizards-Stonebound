@@ -22,8 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private float boxHeight = 0.1f;
     private float extraCastHeight = 0.1f;
 
-    [Header("Animation")]
+    [Header("Others")]
     public Animator anim;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         col2d = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -51,8 +53,13 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("Player Crouched");
-            anim.SetBool("crouch", true);
+            anim.SetBool("isCrouching", true);
             //throw new System.NotImplementedException("Crouch not implemented yet.");
+        }
+        else if (context.canceled)
+        {
+            Debug.Log("Player stopped Crouching");
+            anim.SetBool("isCrouching", false);
         }
     }
 
@@ -75,6 +82,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (moveInput.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (moveInput.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+
         //if (IsGrounded())
         //{
         //    jumpBufferCounter = jumpBufferTime;
