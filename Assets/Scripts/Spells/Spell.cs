@@ -8,7 +8,7 @@ public abstract class Spell : ScriptableObject
     public string spellName;
     [TextArea(1, 3)] public string description;
     
-    public float healthEffect;
+    public int healthEffect;
 
     public Sprite icon;
 

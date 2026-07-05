@@ -15,7 +15,7 @@ MonoBehaviour:
   spellType: 0
   spellName: Incendium
   description: A burst of flames.
-  healthEffect: -10
+  healthEffect: -50
   icon: {fileID: 0}
   cooldown: 3
   projectilePrefab: {fileID: 6893787821224560266, guid: f836cc6e476a0bb4fa01fc02e4872ab3, type: 3}

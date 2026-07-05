@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ProjectileSpell", menuName = "ScriptableObject/ProjectileSpell")]
@@ -20,6 +19,11 @@ public class ProjectileSpell : Spell
         if (projectile.TryGetComponent<Rigidbody2D>(out var rb))
         {
             rb.linearVelocity = direction * projectileSpeed;
+        }
+
+        if (projectile.TryGetComponent<ProjectileImpact>(out var projectileImpact))
+        {
+            projectileImpact.SetDamage(healthEffect);
         }
     }
 }
