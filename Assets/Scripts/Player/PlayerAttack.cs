@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
-using System;
+using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
 
     public Spell activeSpell;
+    public float spellCooldown;
+    private bool canAttack;
 
     [SerializeField]
     private Transform wandTip;
@@ -14,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        canAttack = true;
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && canAttack)
         {
             Debug.Log("Pew-pew!");
 
@@ -38,6 +39,17 @@ public class PlayerAttack : MonoBehaviour
             Vector2 fireDirection = (mouseWorldPosition - wandTip.position).normalized;
 
             activeSpell.Cast(wandTip, fireDirection);
+
+            StartCoroutine(Cooldown(activeSpell.cooldown));
         }
+    }
+
+    IEnumerator Cooldown(float cooldown)
+    {
+        canAttack = false;
+
+        yield return new WaitForSeconds(cooldown);
+
+        canAttack = true;
     }
 }
