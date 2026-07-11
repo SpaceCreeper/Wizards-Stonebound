@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Objective : MonoBehaviour, IObjective
@@ -17,7 +18,7 @@ public abstract class Objective : MonoBehaviour, IObjective
     protected abstract bool CompletionCheck();
 
     // REMOVE IF UNNECESSARY (FOR DEBUG ONLY)
-    protected virtual void OnCompleteObjective()
+    protected virtual void CompleteObjective()
     {
         Debug.Log($"Objective Completed: {Title}");
     }
@@ -29,7 +30,7 @@ public abstract class Objective : MonoBehaviour, IObjective
         if (CompletionCheck())
         {
             IsCompleted = true;
-            OnCompleteObjective();
+            CompleteObjective();
         }
     }
 }

@@ -1,22 +1,25 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    public List<Objective> objectivesList = new List<Objective>();
+    [SerializeField] private List<Objective> objectivesList = new List<Objective>();
     private int currentObjectiveIndex = 0;
+
+    public event Action<string, string> OnObjectiveChanged;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (objectivesList.Count == 0) return;
 
-        for (int i = 0; i < objectivesList.Count; i++)
+        foreach (var objective in objectivesList)
         {
-            objectivesList[i].enabled = false;
+            objective.enabled = false;
         }
 
-        objectivesList[0].enabled = true;
+        ActivateObjective(0);
     }
 
     // Update is called once per frame
@@ -26,15 +29,30 @@ public class ObjectiveManager : MonoBehaviour
 
         if (objectivesList[currentObjectiveIndex].IsCompleted)
         {
-            objectivesList[currentObjectiveIndex].enabled = false;
-
-            currentObjectiveIndex++;
+            AdvanceObjective();
 
             if (currentObjectiveIndex < objectivesList.Count)
             {
-                objectivesList[currentObjectiveIndex].enabled = true;
-                Debug.Log($"New Active Objective: {objectivesList[currentObjectiveIndex].Title}");
+                ActivateObjective(currentObjectiveIndex);
             }
         }
+    }
+
+    private void AdvanceObjective()
+    {
+        objectivesList[currentObjectiveIndex].enabled = false;
+        currentObjectiveIndex++;
+    }
+
+    private void ActivateObjective(int index)
+    {
+        objectivesList[index].enabled = true;
+
+        Debug.Log($"New Objective: {objectivesList[index].Title}");
+
+        OnObjectiveChanged?.Invoke(
+            objectivesList[index].Title,
+            objectivesList[index].Description
+        );
     }
 }
