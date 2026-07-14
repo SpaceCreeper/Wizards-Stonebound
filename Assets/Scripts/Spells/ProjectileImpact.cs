@@ -15,8 +15,15 @@ public class ProjectileImpact : MonoBehaviour
         {
             if (collision.gameObject.TryGetComponent<Health>(out var health))
             {
-                health.TakeDamage(damageToDeal);
+                health.ModifyHealth(damageToDeal);
+                Destroy(this.gameObject);
             }
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Debug.Log("BOOM GROUND!");
+            Destroy(this.gameObject);
         }
     }
 }

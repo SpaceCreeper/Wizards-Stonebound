@@ -7,7 +7,7 @@ public class ProjectileSpell : Spell
     public GameObject projectilePrefab;
     public float projectileSpeed;
     
-    public override void Cast(Transform firePoint, Vector2 direction)
+    public override void Cast(Transform firePoint, Vector2 direction, GameObject caster)
     {
         if (projectilePrefab == null) return;
 

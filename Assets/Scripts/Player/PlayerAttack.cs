@@ -38,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
 
             Vector2 fireDirection = (mouseWorldPosition - wandTip.position).normalized;
 
-            activeSpell.Cast(wandTip, fireDirection);
+            activeSpell.Cast(wandTip, fireDirection, this.gameObject);
 
             StartCoroutine(Cooldown(activeSpell.cooldown));
         }

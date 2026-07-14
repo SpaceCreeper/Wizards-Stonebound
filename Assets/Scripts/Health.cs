@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
         
     }
 
-    public void TakeDamage(int amount)
+    public void ModifyHealth(int amount)
     {
         // healthEffect accepts positive and negative input in the Inspector
         // consider changing to use new variable to select positive/negative instead

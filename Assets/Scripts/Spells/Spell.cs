@@ -14,5 +14,5 @@ public abstract class Spell : ScriptableObject
 
     public float cooldown;
 
-    public abstract void Cast(Transform firePoint, Vector2 direction);
+    public abstract void Cast(Transform firePoint, Vector2 direction, GameObject caster=null);
 }
