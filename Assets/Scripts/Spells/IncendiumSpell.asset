@@ -17,6 +17,6 @@ MonoBehaviour:
   description: A burst of flames.
   healthEffect: -50
   icon: {fileID: -875054732787593325, guid: 330b55d7950c6e148babbeba40d8ff1c, type: 3}
-  cooldown: 1
-  projectilePrefab: {fileID: 6893787821224560266, guid: f836cc6e476a0bb4fa01fc02e4872ab3, type: 3}
+  cooldownSeconds: 1
+  projectilePrefab: {fileID: 4499311823054815583, guid: 48246a88c767b454a850190fdff7b480, type: 3}
   projectileSpeed: 20

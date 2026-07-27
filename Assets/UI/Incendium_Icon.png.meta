@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 832e508c3397cfa49a838e879e99fbf7
+guid: 330b55d7950c6e148babbeba40d8ff1c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1884969100552955467
-    second: IncendiumProjectile_0
+      213: -875054732787593325
+    second: Incendium_Icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IncendiumProjectile_0
+      name: Incendium_Icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 1
+        y: 1
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b46eb03f861c82a10800000000000000
-      internalID: 1884969100552955467
+      spriteID: 39fcb255b5e2bd3f0800000000000000
+      internalID: -875054732787593325
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b04eec299a0e45d4ba5b3916440c9b79
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IncendiumProjectile_0: 1884969100552955467
+      Incendium_Icon_0: -875054732787593325
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
