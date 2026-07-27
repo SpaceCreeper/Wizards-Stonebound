@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89177c23b63384e40a2c4618858d449f, type: 3}
-  m_Name: SelfHeal
+  m_Name: RestituoSpell
   m_EditorClassIdentifier: Assembly-CSharp::SelfSpell
-  spellType: 0
-  spellName: 
-  description: 
-  healthEffect: 0
+  spellType: 2
+  spellName: Restituo
+  description: A charming surge of healing
+  healthEffect: 30
   icon: {fileID: 0}
-  cooldown: 0
+  cooldownSeconds: 20
