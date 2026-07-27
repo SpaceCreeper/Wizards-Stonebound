@@ -37,7 +37,10 @@ public class Health : MonoBehaviour
         Debug.Log($"{this.gameObject} says owie by {amount}!");
         Debug.Log($"Health is now: {health}");  
 
-        OnDamage?.Invoke();
+        health = Mathf.Clamp(health, 0, maxHealth);
+
+
+        OnDamage?.Invoke(); // WARNING: THIS WILL DAMAGE EVEN IF IT HEALS. MAY NEED ENUM CHANGES.
 
         if (health <= 0)
         {
