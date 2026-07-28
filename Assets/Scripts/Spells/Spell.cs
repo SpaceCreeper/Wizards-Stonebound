@@ -12,7 +12,7 @@ public abstract class Spell : ScriptableObject
 
     public Sprite icon;
 
-    public float cooldown;
+    public float cooldownSeconds;
 
     public abstract void Cast(Transform firePoint, Vector2 direction, GameObject caster=null);
 }

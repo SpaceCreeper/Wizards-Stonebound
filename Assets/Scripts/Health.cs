@@ -31,16 +31,18 @@ public class Health : MonoBehaviour
 
     public void ModifyHealth(int amount)
     {
-        // healthEffect accepts positive and negative input in the Inspector
+        // Spell.healthEffect accepts positive and negative input in the Inspector
         // consider changing to use new variable to select positive/negative instead
         health += amount;
-        Debug.Log($"{this.gameObject} says owie by {amount}!");
-        Debug.Log($"Health is now: {health}");  
-
         health = Mathf.Clamp(health, 0, maxHealth);
 
-
-        OnDamage?.Invoke(); // WARNING: THIS WILL DAMAGE EVEN IF IT HEALS. MAY NEED ENUM CHANGES.
+        Debug.Log($"{this.gameObject} says owie by {amount}!");
+        Debug.Log($"Health is now: {health}");
+        
+        if (amount < 0)
+        {
+            OnDamage?.Invoke(); // WARNING: THIS WILL DAMAGE EVEN IF IT HEALS. MAY NEED ENUM CHANGES. // TEMP
+        }
 
         if (health <= 0)
         {

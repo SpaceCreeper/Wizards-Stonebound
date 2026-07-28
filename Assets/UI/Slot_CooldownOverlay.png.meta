@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d59fec180d2eb284da2429e4685f7d50
+guid: 74cfadb1caf21984a9989e9ef8848df8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9192209372824085672
-    second: Key_E_0
+      213: -3427638909495153185
+    second: Slot_CooldownOverlay_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Key_E_0
+      name: Slot_CooldownOverlay_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 15
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8a42230e8b9419f70800000000000000
-      internalID: 9192209372824085672
+      spriteID: fddeb3d72949e60d0800000000000000
+      internalID: -3427638909495153185
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Key_E_0: 9192209372824085672
+      Slot_CooldownOverlay_0: -3427638909495153185
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

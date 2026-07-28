@@ -16,5 +16,5 @@ MonoBehaviour:
   spellName: Restituo
   description: A charming surge of healing
   healthEffect: 30
-  icon: {fileID: 0}
+  icon: {fileID: 8573271128193508226, guid: 20b70d944b159c44eb63e1a6b08a08eb, type: 3}
   cooldownSeconds: 20

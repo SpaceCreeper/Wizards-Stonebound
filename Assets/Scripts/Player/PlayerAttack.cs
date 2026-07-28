@@ -4,31 +4,21 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
-
-    public Spell activeSpell;
-    public float spellCooldown;
-    private bool canAttack;
-
-    [SerializeField]
-    private Transform wandTip;
+    public PlayerSpellSelection playerSpellSelection;
+    [SerializeField] private Transform wandTip;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        canAttack = true;
+        playerSpellSelection = GetComponent<PlayerSpellSelection>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && canAttack)
+        if (context.started && playerSpellSelection.CanCastActiveSpell())
         {
             Debug.Log("Pew-pew!");
+            Spell activeSpell = playerSpellSelection.activeSpell;
 
             if (activeSpell == null) return;
 
@@ -39,17 +29,7 @@ public class PlayerAttack : MonoBehaviour
             Vector2 fireDirection = (mouseWorldPosition - wandTip.position).normalized;
 
             activeSpell.Cast(wandTip, fireDirection, this.gameObject);
-
-            StartCoroutine(Cooldown(activeSpell.cooldown));
+            playerSpellSelection.TriggerActiveSpellCooldown();
         }
-    }
-
-    IEnumerator Cooldown(float cooldown)
-    {
-        canAttack = false;
-
-        yield return new WaitForSeconds(cooldown);
-
-        canAttack = true;
     }
 }
