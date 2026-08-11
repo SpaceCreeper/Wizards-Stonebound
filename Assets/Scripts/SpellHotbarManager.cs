@@ -50,7 +50,7 @@ public class SpellHotbarManager : MonoBehaviour
 
             if (remainingCooldownTime > 0f && totalCooldownTime > 0f)
             {
-                cooldownOverlays[i].fillAmount = remainingCooldownTime / totalCooldownTime;
+                cooldownOverlays[i].fillAmount = Mathf.Floor((remainingCooldownTime / totalCooldownTime) * 10) / 10;
             }
             else
             {

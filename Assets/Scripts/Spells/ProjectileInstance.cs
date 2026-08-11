@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileImpact : MonoBehaviour
+public class ProjectileInstance : MonoBehaviour
 {
     public int damageToDeal;
 

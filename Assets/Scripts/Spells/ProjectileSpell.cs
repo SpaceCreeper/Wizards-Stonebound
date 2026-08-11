@@ -21,9 +21,9 @@ public class ProjectileSpell : Spell
             rb.linearVelocity = direction * projectileSpeed;
         }
 
-        if (projectile.TryGetComponent<ProjectileImpact>(out var projectileImpact))
+        if (projectile.TryGetComponent<ProjectileInstance>(out var projectileInstance))
         {
-            projectileImpact.SetDamage(healthEffect);
+            projectileInstance.SetDamage(healthEffect);
         }
     }
 }
