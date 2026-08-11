@@ -12,6 +12,8 @@ public class RayInstance : MonoBehaviour
     Vector2 endPoint;
     
     [Min(2)] int vertexCount = 25;
+    
+    float hitDistance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +34,8 @@ public class RayInstance : MonoBehaviour
         lineRenderer.endWidth = raySpellData.endWidth;
 
         lineRenderer.positionCount = vertexCount;
+
+        StartCoroutine(DamageRoutine(raySpellData.secondsPerHit));
         
         Destroy(this.gameObject, raySpellData.holdDuration);
     }
@@ -51,22 +55,9 @@ public class RayInstance : MonoBehaviour
             raySpellData.obstacleLayers
         );
 
-        float hitDistance = obstableHit ? obstableHit.distance : raySpellData.maxRange;
+        hitDistance = obstableHit ? obstableHit.distance : raySpellData.maxRange;
 
         endPoint = originPoint + (direction * hitDistance);
-
-        // Attacking enemies
-        RaycastHit2D[] raycastHits = Physics2D.RaycastAll(originPoint, direction, raySpellData.maxRange, raySpellData.enemyLayer);
-
-        foreach (RaycastHit2D hit in raycastHits)
-        {
-            if (hit.distance <= hitDistance)
-            {
-                GameObject enemy = hit.collider.gameObject;
-                Debug.Log(enemy);
-                enemy.GetComponent<Health>().ModifyHealth(raySpellData.healthEffect);
-            }
-        }
         
         // Updating LineRenderer
         for (int i = 0; i < vertexCount; i++)
@@ -80,5 +71,31 @@ public class RayInstance : MonoBehaviour
         Vector2 perpendicular = new Vector2(-direction.y, direction.x);
         lineRenderer.material.SetVector("_Perpendicular", perpendicular);
         lineRenderer.material.SetFloat("_Length", hitDistance);
+    }
+
+    void DealDamage()
+    {
+        // Attacking Enemies
+        RaycastHit2D[] raycastHits = Physics2D.RaycastAll(originPoint, direction, raySpellData.maxRange, raySpellData.enemyLayer);
+
+        foreach (RaycastHit2D hit in raycastHits)
+        {
+            if (hit.distance <= hitDistance)
+            {
+                GameObject enemy = hit.collider.gameObject;
+                Debug.Log(enemy);
+
+                enemy.GetComponent<Health>().ModifyHealth(raySpellData.healthEffect);
+            }
+        }
+    }
+
+    IEnumerator DamageRoutine(float seconds)
+    {
+        while (true)
+        {
+            DealDamage();
+            yield return new WaitForSeconds(seconds);
+        }
     }
 }
