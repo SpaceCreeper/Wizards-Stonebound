@@ -5,7 +5,6 @@ using UnityEngine;
 public class ColorFlash : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Color color = Color.red;
     [SerializeField, Range(0.0f, 1.0f)] private float flashDuration;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,12 +13,17 @@ public class ColorFlash : MonoBehaviour
         
     }
 
-    public void Flash()
+    public void FlashDamage()
     {
-        StartCoroutine(FlashCoroutine());
+        StartCoroutine(FlashCoroutine(Color.red));
     }
 
-    IEnumerator FlashCoroutine()
+    public void FlashHeal()
+    {
+        StartCoroutine(FlashCoroutine(Color.green));
+    }
+
+    IEnumerator FlashCoroutine(Color color)
     {
         spriteRenderer.color = color;
 

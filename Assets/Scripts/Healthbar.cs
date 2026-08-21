@@ -27,11 +27,11 @@ public class Healthbar : MonoBehaviour
     {
         slider.value = playerHealth.health;
 
-        if (playerHealth.health >= 50)
+        if (playerHealth.health > 50)
         {
             fill.color = healthy;
         }
-        else if (playerHealth.health > 25 && playerHealth.health < 50)
+        else if (playerHealth.health > 25 && playerHealth.health <= 50)
         {
             fill.color = danger;
         }

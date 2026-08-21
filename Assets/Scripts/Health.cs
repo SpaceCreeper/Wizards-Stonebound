@@ -4,10 +4,12 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [Header("Properties")]
-    public int health;
+    [field: SerializeField] public int health {get; private set;}
     [SerializeField] private int maxHealth = 100;
 
     [Header("Events")]
+    public UnityEvent OnHeal;
+    [Space]
     public UnityEvent OnDamage;
     [Space]
     public UnityEvent OnDeath;
@@ -39,9 +41,14 @@ public class Health : MonoBehaviour
         Debug.Log($"{this.gameObject} says owie by {amount}!");
         Debug.Log($"Health is now: {health}");
         
+        if (amount > 0)
+        {
+            OnHeal?.Invoke();
+        }
+        
         if (amount < 0)
         {
-            OnDamage?.Invoke(); // WARNING: THIS WILL DAMAGE EVEN IF IT HEALS. MAY NEED ENUM CHANGES. // TEMP
+            OnDamage?.Invoke();
         }
 
         if (health <= 0)
