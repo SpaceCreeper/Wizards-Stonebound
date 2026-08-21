@@ -15,7 +15,7 @@ public class EnemyAttack : MonoBehaviour
     [Header("Attack Settings")]
     public Spell attackSpell;
     public Transform eyePoint;
-    public float bufferSeconds = 0.5f;
+    public float preAttackSeconds = 0.5f;
 
     private bool isAttacking = false;
 
@@ -63,6 +63,8 @@ public class EnemyAttack : MonoBehaviour
 
         Vector2 direction = (playerTransform.position - eyePoint.position).normalized;
         spriteRenderer.flipX = direction.x < 0;
+
+        yield return new WaitForSeconds(preAttackSeconds);
 
         if (attackSpell)
         {
