@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Component References")]
     public Rigidbody2D rb2d;
-    public Collider2D col2d;
+    public BoxCollider2D bcol2d;
 
     [Header("Movement Settings")]
     public float moveSpeed;
@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     //[Space]
     //public float jumpBufferTime;
     //private float jumpBufferCounter;
+    [Space]
+    public Vector2 standColliderOffset;
+    public Vector2 standColliderSize;
+    public Vector2 crouchColliderOffset;
+    public Vector2 crouchColliderSize;
 
     private Vector2 moveInput;
 
@@ -30,9 +35,12 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        col2d = GetComponent<Collider2D>();
+        bcol2d = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        standColliderOffset = bcol2d.offset;
+        standColliderSize = bcol2d.size;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -54,18 +62,23 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Player Crouched");
             anim.SetBool("isCrouching", true);
-            //throw new System.NotImplementedException("Crouch not implemented yet.");
+
+            bcol2d.offset = crouchColliderOffset;
+            bcol2d.size = crouchColliderSize;
         }
         else if (context.canceled)
         {
             Debug.Log("Player stopped Crouching");
             anim.SetBool("isCrouching", false);
+
+            bcol2d.offset = standColliderOffset;
+            bcol2d.size = standColliderSize;
         }
     }
 
     bool IsGrounded()
     {
-        Bounds bounds = col2d.bounds;
+        Bounds bounds = bcol2d.bounds;
 
         RaycastHit2D hit = Physics2D.BoxCast(
             new Vector2(bounds.center.x, bounds.min.y + (boxHeight / 2)),
@@ -105,5 +118,11 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb2d.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb2d.linearVelocityY);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(bcol2d.bounds.center, bcol2d.size);
     }
 }
