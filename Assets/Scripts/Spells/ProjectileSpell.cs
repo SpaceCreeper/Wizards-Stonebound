@@ -6,7 +6,6 @@ public class ProjectileSpell : Spell
 {
     public GameObject projectilePrefab;
     public float projectileSpeed;
-    public float projectileLifetime = 5.0f;
     
     public override void Cast(Transform firePoint, Vector2 direction, GameObject caster)
     {
@@ -24,7 +23,7 @@ public class ProjectileSpell : Spell
 
         if (projectile.TryGetComponent<ProjectileInstance>(out var projectileInstance))
         {
-            projectileInstance.Setup(this, caster);
+            projectileInstance.SetDamage(healthEffect);
         }
     }
 }

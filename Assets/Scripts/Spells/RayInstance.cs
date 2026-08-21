@@ -47,15 +47,18 @@ public class RayInstance : MonoBehaviour
         Vector2 mouseWorldPosition = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         direction = (mouseWorldPosition - originPoint).normalized;
 
+        float targetDistance = Vector2.Distance(originPoint, mouseWorldPosition);
+        targetDistance = Mathf.Min(targetDistance, raySpellData.maxRange);
+
         // Obtaining distance form firePoint to obstacle hit
         RaycastHit2D obstableHit = Physics2D.Raycast(
             originPoint,
             direction,
-            raySpellData.maxRange,
+            targetDistance,
             raySpellData.obstacleLayers
         );
 
-        hitDistance = obstableHit ? obstableHit.distance : raySpellData.maxRange;
+        hitDistance = obstableHit ? obstableHit.distance : targetDistance;
 
         endPoint = originPoint + (direction * hitDistance);
         
@@ -68,6 +71,7 @@ public class RayInstance : MonoBehaviour
             lineRenderer.SetPosition(i, point);
         }
 
+        // For shader manipulation
         Vector2 perpendicular = new Vector2(-direction.y, direction.x);
         lineRenderer.material.SetVector("_Perpendicular", perpendicular);
         lineRenderer.material.SetFloat("_Length", hitDistance);

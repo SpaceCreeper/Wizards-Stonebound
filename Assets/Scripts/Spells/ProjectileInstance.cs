@@ -2,30 +2,22 @@ using UnityEngine;
 
 public class ProjectileInstance : MonoBehaviour
 {
-    ProjectileSpell projectileSpellData;
-    GameObject caster;
+    public int damageToDeal;
 
-    public void Setup(ProjectileSpell projectileSpellData, GameObject caster)
+    public void SetDamage(int damageValue)
     {
-        this.projectileSpellData = projectileSpellData;
-        this.caster = caster;
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Destroy(this.gameObject, projectileSpellData.projectileLifetime);
+        damageToDeal = (int)damageValue;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == caster) return;
-        
-        if (collision.gameObject.TryGetComponent<Health>(out var health))
+        if (!collision.gameObject.CompareTag("Player")) 
         {
-            health.ModifyHealth((int)projectileSpellData.healthEffect);
-            Destroy(this.gameObject);
-            return;
+            if (collision.gameObject.TryGetComponent<Health>(out var health))
+            {
+                health.ModifyHealth(damageToDeal);
+                Destroy(this.gameObject);
+            }
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))

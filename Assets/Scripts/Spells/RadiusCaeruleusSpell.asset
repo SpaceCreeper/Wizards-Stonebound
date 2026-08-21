@@ -17,12 +17,13 @@ MonoBehaviour:
   description: Dense concentration of pure energy
   healthEffect: -10
   icon: {fileID: 0}
-  cooldownSeconds: 5
+  cooldownSeconds: 20
   rayColor: {r: 1, g: 1, b: 1, a: 1}
   startWidth: 0.5
   endWidth: 0.5
   maxRange: 10
   holdDuration: 3
+  secondsPerHit: 0.5
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 64
